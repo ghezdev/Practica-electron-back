@@ -1,12 +1,13 @@
-const express = require('express')
-const app = express()
+'use strict'
 
+const { app, mongoose } = require('./app.js')
+
+// Assigned port
 app.set('port', process.env.PORT || 8081)
 
-app.get('/', (req, res) =>
-{
-  res.send('Hello World!');
-})
+mongoose.connect('mongodb://localhost/kiosco')
+  .then(db => console.log('La BD fue conectada'))
+  .catch(err => console.error(err))
 
 app.listen(app.set('port'), () =>
 {
